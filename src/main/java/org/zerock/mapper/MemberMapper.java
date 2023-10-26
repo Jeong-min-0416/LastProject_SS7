@@ -1,8 +1,8 @@
 package org.zerock.mapper;
 
-import org.zerock.dto.MemberVO;
+import org.zerock.dto.MemberDto;
 
 public interface MemberMapper {
-	public MemberVO read(String userid);
+	public MemberDto read(String userid);
 	
 }

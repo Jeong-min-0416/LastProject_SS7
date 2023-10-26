@@ -10,15 +10,15 @@ import org.springframework.security.core.userdetails.User;
 import lombok.Getter;
 
 @Getter
-public class CustomUser extends User {
+public class CustomUserDto extends User {
    private static final long serialVersionUID = 1L;
-   private MemberVO member;
+   private MemberDto member;
 
-   public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+   public CustomUserDto(String username, String password, Collection<? extends GrantedAuthority> authorities) {
       super(username, password, authorities);
    }
 
-   public CustomUser(MemberVO vo) {
+   public CustomUserDto(MemberDto vo) {
       super(vo.getUserid(), vo.getUserpw(), vo.getAuthList().stream()
             .map(auth -> new SimpleGrantedAuthority(auth.getAuth()))
             .collect(Collectors.toList()));

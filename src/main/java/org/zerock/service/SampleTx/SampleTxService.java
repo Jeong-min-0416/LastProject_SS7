@@ -1,4 +1,4 @@
-package org.zerock.service;
+package org.zerock.service.SampleTx;
 
 public interface SampleTxService {
 

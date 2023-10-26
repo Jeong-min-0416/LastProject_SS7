@@ -3,27 +3,27 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.zerock.dto.BoardVO;
-import org.zerock.dto.Criteria;
+import org.zerock.dto.BoardDto;
+import org.zerock.dto.CriteriaDto;
 
 public interface BoardMapper {
 
-  public List<BoardVO> getList();
+  public List<BoardDto> getList();
 
-  public List<BoardVO> getListWithPaging(Criteria cri);
+  public List<BoardDto> getListWithPaging(CriteriaDto cri);
 
-  public void insert(BoardVO board);
+  public void insert(BoardDto board);
 
-  public void insertSelectKey(BoardVO board);
+  public void insertSelectKey(BoardDto board);
 
-  public BoardVO read(Long bno);
+  public BoardDto read(Long bno);
 
   public int delete(Long bno);
 
-  public int update(BoardVO board);
+  public int update(BoardDto board);
 
-  public int getTotalCount(Criteria cri);
+  public int getTotalCount(CriteriaDto cri);
 
   public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
-  
+
 }

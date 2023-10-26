@@ -5,14 +5,14 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class PageDTO {
+public class PageDto {
 	private int startPage;
 	private int endPage;
 	private boolean prev, next;
 	private int total;
-	private Criteria cri;
+	private CriteriaDto cri;
 	
-	public PageDTO(Criteria cri, int total) {
+	public PageDto(CriteriaDto cri, int total) {
 		this.cri = cri;
 		this.total = total;
 		this.endPage = (int)Math.ceil(cri.getPageNum() / 8.0) * 8;
@@ -23,7 +23,7 @@ public class PageDTO {
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}
-		
+
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
 	}

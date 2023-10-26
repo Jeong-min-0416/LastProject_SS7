@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.dto.BoardVO;
-import org.zerock.dto.Criteria;
-import org.zerock.dto.PageDTO;
-import org.zerock.service.BoardService;
+import org.zerock.dto.BoardDto;
+import org.zerock.dto.CriteriaDto;
+import org.zerock.dto.PageDto;
+import org.zerock.service.Board.BoardService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -27,13 +27,13 @@ public class BoardController {
 
    // 1. 리스트 페이지
    @GetMapping("/list")
-   public void list(Criteria cri, Model model) {
+   public void list(CriteriaDto cri, Model model) {
       log.info("list 처리가 이루어집니다!" + cri);
       model.addAttribute("list", service.getList(cri));
 
       int total = service.getTotal(cri);
       log.info("전체 데이터 수량= " + total);
-      model.addAttribute("pageMaker", new PageDTO(cri, total));
+      model.addAttribute("pageMaker", new PageDto(cri, total));
    }
 
    // 2. 새로운 항목을 등록
@@ -47,7 +47,7 @@ public class BoardController {
    // 4. 글 등록
    @PreAuthorize("isAuthenticated()")
    @PostMapping("/register")
-   public String register(BoardVO board, RedirectAttributes rttr) {
+   public String register(BoardDto board, RedirectAttributes rttr) {
       log.info("글 등록: " + board);
       service.register(board);
 
@@ -59,7 +59,7 @@ public class BoardController {
    @GetMapping({ "/get", "/modify" })
    public void get(
          @RequestParam("bno") Long bno,
-         @ModelAttribute("cri") Criteria cri, Model model) {
+         @ModelAttribute("cri") CriteriaDto cri, Model model) {
 
       log.info("/get or modify");
       model.addAttribute("board", service.get(bno));
@@ -69,7 +69,7 @@ public class BoardController {
    @PreAuthorize("principal.username == #board.writer")
    @PostMapping("/modify")
    public String modify(
-         BoardVO board, @ModelAttribute("cri") Criteria cri,
+         BoardDto board, @ModelAttribute("cri") CriteriaDto cri,
          RedirectAttributes rttr) {
 
       log.info("글수정 처리가 되었습니다! ==> " + board);
@@ -90,7 +90,7 @@ public class BoardController {
    @PostMapping("/remove")
    public String remove(
          @RequestParam("bno") Long bno,
-         @ModelAttribute("cri") Criteria cri,
+         @ModelAttribute("cri") CriteriaDto cri,
          RedirectAttributes rttr, String writer) {
       log.info("글삭제 처리가 되었습니다! ==> " + bno);
 

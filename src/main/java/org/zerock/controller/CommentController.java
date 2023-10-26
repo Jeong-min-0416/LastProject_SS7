@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.dto.Criteria;
-import org.zerock.dto.ReplyPageDTO;
-import org.zerock.dto.ReplyVO;
-import org.zerock.service.ReplyService;
+import org.zerock.dto.CommentDto;
+import org.zerock.dto.CriteriaDto;
+import org.zerock.dto.ReplyDto;
+import org.zerock.service.Comment.CommentService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -26,14 +26,14 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class CommentController {
 
-      private ReplyService service;
+      private CommentService service;
 
       // 1. 댓글 등록
       @PreAuthorize("isAuthenticated()")
       @PostMapping(value = "/new",
             consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 
-      public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
+      public ResponseEntity<String> create(@RequestBody ReplyDto vo) {
 
             log.info("ReplyVO 댓글 객체 = " + vo);
             int insertCount = service.register(vo);
@@ -49,15 +49,15 @@ public class CommentController {
             produces = {MediaType.APPLICATION_XML_VALUE,
                         MediaType.APPLICATION_JSON_UTF8_VALUE })
 
-      public ResponseEntity<ReplyPageDTO> getList(
+      public ResponseEntity<CommentDto> getList(
                   @PathVariable("page") int page,
                   @PathVariable("bno") Long bno) {
 
-            Criteria cri = new Criteria(page, 10);
+            CriteriaDto cri = new CriteriaDto(page, 10);
                   log.info("특정 게시글에 등록된 댓글의 리스트 목록 내용 확인! ==> " + bno);
                   log.info(cri);
 
-            return new ResponseEntity<ReplyPageDTO>(service.getListPage(cri, bno), HttpStatus.OK);
+            return new ResponseEntity<CommentDto>(service.getListPage(cri, bno), HttpStatus.OK);
       }
 
       // 3. 댓글 상세조회
@@ -65,7 +65,7 @@ public class CommentController {
             produces = {MediaType.APPLICATION_XML_VALUE,
                         MediaType.APPLICATION_JSON_UTF8_VALUE })
 
-      public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno) {
+      public ResponseEntity<ReplyDto> get(@PathVariable("rno") Long rno) {
 
             log.info("댓글 상세 조회 내용: " + rno);
             return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
@@ -77,7 +77,7 @@ public class CommentController {
             value = "/modify/{rno}",
             consumes = "application/json",
             produces = {MediaType.TEXT_PLAIN_VALUE })
-      public ResponseEntity<String> modify(@RequestBody ReplyVO vo, @PathVariable("rno") Long rno) {
+      public ResponseEntity<String> modify(@RequestBody ReplyDto vo, @PathVariable("rno") Long rno) {
             vo.setRno(rno);
 
             log.info("rno 댓글 번호 = " + rno);
@@ -92,7 +92,7 @@ public class CommentController {
       @PreAuthorize("principal.username == #vo.replyer")
       @DeleteMapping(value = "/delete/{rno}",
             consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-      public ResponseEntity<String> remove(@RequestBody ReplyVO vo, @PathVariable("rno") Long rno) {
+      public ResponseEntity<String> remove(@RequestBody ReplyDto vo, @PathVariable("rno") Long rno) {
 
             log.info("댓글 삭제 처리: " + rno);
             log.info("replyer 댓글 작성자: " + vo.getReplyer());

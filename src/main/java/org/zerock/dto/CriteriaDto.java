@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class Criteria {
+public class CriteriaDto {
 	private int pageNum;
 	private int amount;
 	private String type;
@@ -15,11 +15,11 @@ public class Criteria {
 		return type == null ? new String[] {} : type.split("");
 	}
 
-	public Criteria() {
+	public CriteriaDto() {
 		this(1, 15);
 	}
 
-	public Criteria(int pageNum, int amount) {
+	public CriteriaDto(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}

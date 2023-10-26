@@ -1,13 +1,13 @@
-package org.zerock.service;
+package org.zerock.service.Comment;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.dto.Criteria;
-import org.zerock.dto.ReplyPageDTO;
-import org.zerock.dto.ReplyVO;
+import org.zerock.dto.CommentDto;
+import org.zerock.dto.CriteriaDto;
+import org.zerock.dto.ReplyDto;
 import org.zerock.mapper.BoardMapper;
 import org.zerock.mapper.ReplyMapper;
 
@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 @Service
 @Log4j
 @AllArgsConstructor
-public class ReplyServiceImpl implements ReplyService {
+public class CommentServiceImpl implements CommentService {
 
 	private ReplyMapper mapper;
 
@@ -27,7 +27,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Transactional
 	@Override
-	public int register(ReplyVO vo) {
+	public int register(ReplyDto vo) {
 		log.info("댓글 등록이 정상적으로 처리 되었습니다" + vo);
 
 		boardMapper.updateReplyCnt(vo.getBno(), 1);
@@ -36,13 +36,13 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public ReplyVO get(Long rno) {
+	public ReplyDto get(Long rno) {
 		log.info("댓글 상세보기 기능입니다" + rno);
 		return mapper.read(rno);
 	}
 
 	@Override
-	public int modify(ReplyVO vo) {
+	public int modify(ReplyDto vo) {
 		log.info("댓글 수정 기능입니다" + vo);
 		return mapper.update(vo);
 	}
@@ -51,21 +51,21 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int remove(Long rno) {
 		log.info("댓글 삭제 기능입니다!" + rno);
-		ReplyVO vo = mapper.read(rno);
+		ReplyDto vo = mapper.read(rno);
 
 		boardMapper.updateReplyCnt(vo.getBno(), -1);
 		return mapper.delete(rno);
 	}
 
 	@Override
-	public List<ReplyVO> getList(Criteria cri, Long bno) {
+	public List<ReplyDto> getList(CriteriaDto cri, Long bno) {
 		log.info("댓글 목록 조회 기능입니다!" + bno);
 		return mapper.getListWithPaging(cri, bno);
 	}
 
 	@Override
-	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
-		return new ReplyPageDTO(
+	public CommentDto getListPage(CriteriaDto cri, Long bno) {
+		return new CommentDto(
 			mapper.getCountByBno(bno),
 			mapper.getListWithPaging(cri, bno));
 	}

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.zerock.dto.CustomUser;
-import org.zerock.dto.MemberVO;
+import org.zerock.dto.CustomUserDto;
+import org.zerock.dto.MemberDto;
 import org.zerock.mapper.MemberMapper;
 
 import lombok.Setter;
@@ -20,9 +20,9 @@ public class CustomUserDetailsService implements UserDetailsService {
    @Override
    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
       log.warn("Load User By UserName 사용자 : " + username);
-      MemberVO vo = memberMapper.read(username);
+      MemberDto vo = memberMapper.read(username);
 
       log.warn("queried by member mapper 멤버 메퍼 : " + vo);
-      return vo == null ? null : new CustomUser(vo);
+      return vo == null ? null : new CustomUserDto(vo);
    }
 }

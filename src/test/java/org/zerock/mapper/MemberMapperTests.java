@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.zerock.dto.MemberVO;
+import org.zerock.dto.MemberDto;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,7 +21,7 @@ public class MemberMapperTests {
    
    @Test
    public void testRead() {
-      MemberVO vo = mapper.read("admin90");
+      MemberDto vo = mapper.read("admin90");
       log.info(vo);
       vo.getAuthList().forEach(authVO -> log.info(authVO));
    

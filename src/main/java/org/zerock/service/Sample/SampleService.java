@@ -1,4 +1,4 @@
-package org.zerock.service;
+package org.zerock.service.Sample;
 
 public interface SampleService {
 

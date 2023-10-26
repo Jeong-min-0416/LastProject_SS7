@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.dto.Criteria;
-import org.zerock.dto.ReplyVO;
+import org.zerock.dto.CriteriaDto;
+import org.zerock.dto.ReplyDto;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -25,9 +25,9 @@ public class ReplyMapperTests {
 
 	@Test
 	public void testList2() {
-		Criteria cri = new Criteria(1, 10);
+		CriteriaDto cri = new CriteriaDto(1, 10);
 
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, 1312560L);
+		List<ReplyDto> replies = mapper.getListWithPaging(cri, 1312560L);
 
 		replies.forEach(reply -> log.info(reply));
 	}

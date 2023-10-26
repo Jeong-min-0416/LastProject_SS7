@@ -9,9 +9,9 @@ import lombok.Getter;
 @Data
 @AllArgsConstructor
 @Getter
-public class ReplyPageDTO {
+public class CommentDto {
 
 	private int replyCnt;
-	private List<ReplyVO> list;
+	private List<ReplyDto> list;
 	
 }
