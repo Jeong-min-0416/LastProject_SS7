@@ -9,7 +9,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-public class CommonController {
+public class LoginController {
 
 	// 1. 접근 권한이 없는 경우 알림
 	@GetMapping("/accessError")
