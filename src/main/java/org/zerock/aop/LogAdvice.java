@@ -16,20 +16,20 @@ import lombok.extern.log4j.Log4j;
 @Component
 public class LogAdvice {
 
-
     // 실행 로그
     @Before("execution(* org.zerock.service.SampleService*.*(..))")
     public void logBefore() {
         log.info("SampleService(이)가 실행되었습니다.");
     }
 
-
+    // 메서드의 인자 값을 로깅
     @Before("execution(* org.zerock.service.SampleService*.doAdd(String, String)) && args(str1, str2)")
     public void logBeforeWithParam(String str1, String str2) {
         log.info("str1: " + str1);
         log.info("str2: " + str2);
     }
 
+    //  실행 중에 예외가 발생
     @AfterThrowing(pointcut = "execution(* org.zerock.service.SampleService*.*(..))", throwing = "exception")
     public void logException(Exception exception) {
         log.info("SampleService 클래스의 메서드 실행 중에 예외 발생");
@@ -56,5 +56,4 @@ public class LogAdvice {
         log.info("TIME: " + (end - start));
         return result;
     }
-
 }
