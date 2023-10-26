@@ -1,6 +1,6 @@
 package org.zerock.mapper;
 
-import org.zerock.domain.MemberVO;
+import org.zerock.dto.MemberVO;
 
 //Page661, Page662 : 회원에 대한 정보는 MyBatis를 이용해서 처리할 것이므로 MemberMapper를 작성해서
 //tbl_member와 tbl_member_auth 테이블에 데이터를 추가하고, 조회할 수 있도록 작성합니다.

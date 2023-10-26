@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SampleVO {
-
 	private Integer mno;
 	private String firstName;
 	private String lastName;

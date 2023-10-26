@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.zerock.domain.CustomUser;
-import org.zerock.domain.MemberVO;
+import org.zerock.dto.CustomUser;
+import org.zerock.dto.MemberVO;
 import org.zerock.mapper.MemberMapper;
 
 import lombok.Setter;

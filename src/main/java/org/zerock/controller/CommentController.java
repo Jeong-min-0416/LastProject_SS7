@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyPageDTO;
-import org.zerock.domain.ReplyVO;
+import org.zerock.dto.Criteria;
+import org.zerock.dto.ReplyPageDTO;
+import org.zerock.dto.ReplyVO;
 import org.zerock.service.ReplyService;
 
 import lombok.AllArgsConstructor;

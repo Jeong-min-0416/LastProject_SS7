@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
 public class SampleVO_Main {
 
@@ -14,5 +14,4 @@ public class SampleVO_Main {
       SampleVO svo1 = new SampleVO(20, "희선", "김");
       System.out.println(svo1.getMno() + ", " + svo1.getFirstName() + ", " + svo1.getLastName());
    }
-
 }

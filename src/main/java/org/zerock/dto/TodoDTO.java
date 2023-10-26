@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
 import java.util.Date;
 
@@ -8,11 +8,9 @@ import lombok.Data;
 
 @Data
 public class TodoDTO {
-
 	private String title;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date dueDate;
-	
 	
 }

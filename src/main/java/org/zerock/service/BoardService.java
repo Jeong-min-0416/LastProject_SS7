@@ -2,8 +2,8 @@ package org.zerock.service;
 
 import java.util.List;
 
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
+import org.zerock.dto.BoardVO;
+import org.zerock.dto.Criteria;
 
 public interface BoardService {
 	

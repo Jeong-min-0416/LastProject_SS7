@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
 import lombok.Data;
 import lombok.ToString;
@@ -6,7 +6,6 @@ import lombok.ToString;
 @Data
 @ToString
 public class Criteria {
-
 	private int pageNum;
 	private int amount;
 	private String type;

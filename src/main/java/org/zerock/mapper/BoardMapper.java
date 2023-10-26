@@ -3,9 +3,8 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
+import org.zerock.dto.BoardVO;
+import org.zerock.dto.Criteria;
 
 public interface BoardMapper {
 
