@@ -17,5 +17,4 @@ public class CustomNoOpPasswordEncoder implements PasswordEncoder {
 		log.warn("mateches 체크 : " + rawPassword + " : " + encodedPassword);
 		return rawPassword.toString().equals(encodedPassword);
 	}
-
 }

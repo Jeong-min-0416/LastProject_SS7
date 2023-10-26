@@ -1,6 +1,6 @@
 package org.zerock.persistence;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,11 +22,11 @@ public class JDBCTests {
 
 	@Test
 	public void testConnection() {
-		try(Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "book_ex", "book_ex")) {
+		try (Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "book_ex",
+				"book_ex")) {
 			log.info(con);
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
 	}
 }
-

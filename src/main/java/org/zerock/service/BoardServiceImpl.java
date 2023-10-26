@@ -13,16 +13,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 @AllArgsConstructor
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 
-	// Spring 4.3이상에서는 자동 처리
-	// @Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
-	
+
 	@Override
 	public void register(BoardVO board) {
 		log.info("글등록 처리 테스트 입니다 ===> " + board);
-		
 		mapper.insertSelectKey(board);
 	}
 
@@ -44,13 +41,6 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.delete(bno) == 1;
 	}
 
-//	@Override
-//	public List<BoardVO> getList() {
-//
-//		log.info("글 목록 조회 기능을 처리합니다!");
-//		return mapper.getList();
-//	}
-	
 	@Override
 	public List<BoardVO> getList(Criteria cri) {
 		log.info("pageNum와 amount를 고려한 getList() 글목록 조회! : " + cri);
@@ -62,5 +52,4 @@ public class BoardServiceImpl implements BoardService{
 		log.info("전체 데이터 숫자를 카운트해서 알려줍니다");
 		return mapper.getTotalCount(cri);
 	}
-
 }

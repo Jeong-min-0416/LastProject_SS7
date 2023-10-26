@@ -15,8 +15,9 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{@Override
-   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-         Authentication authentication) throws IOException, ServletException {
+   public void onAuthenticationSuccess(
+      HttpServletRequest request, HttpServletResponse response,
+      Authentication authentication) throws IOException, ServletException {
 
       log.warn("Login Success 로그인 성공!");
    
@@ -24,24 +25,17 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{@
       authentication.getAuthorities().forEach(authority -> {
          roleNames.add(authority.getAuthority());
       });
-      
-      // Page638 CustomLoginSuccessHandler는 로그인 한 사용자에 부여된 권한 Authentication 객체를
-      // 이용해서 사용자가 가진 모든 권한을 문자열로 체크합니다. 만일, 사용자가 'ROLE_ADMIN' 권한을 가졌다면
-      // 로그인 후에 바로 '/sample/admin'으로 이동하게 하는 방식입니다.
+
       log.warn("ROLE NAMES 롤 이름 : " + roleNames);
       if (roleNames.contains("ROLE_ADMIN")) {
-//         response.sendRedirect("/sample/admin");
          response.sendRedirect("/board/list");
          return;
       }
-      
       if (roleNames.contains("ROLE_MEMBER")) {
-//         response.sendRedirect("/sample/member");
          response.sendRedirect("/board/list");
          return;
       }
       
       response.sendRedirect("/");
    }
-
 }

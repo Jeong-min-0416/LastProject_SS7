@@ -22,11 +22,10 @@ public class SampleTxServiceImpl implements SampleTxService {
    @Transactional
    @Override
    public void addData(String value) {
-      log.info("mapper1 동작 =====================!");
       mapper1.insertColl(value);
-      log.info("mapper2 동작 =====================!");
-      mapper2.insertColl(value);
+      log.info("mapper1 동작");
       
-      log.info("The end 종료 =====================!");
+      mapper2.insertColl(value);
+      log.info("mapper2 동작");
    }
 }
