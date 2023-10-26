@@ -14,6 +14,5 @@ public class CommonExceptionAdvice {
 	public String handle404(NoHandlerFoundException ex) {
 		
 		return "custom404";
-		
 	}
 }
